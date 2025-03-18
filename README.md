@@ -83,7 +83,7 @@ Tugas pertama, dikarenakan kejadian “Axiom of The End” yang semakin mendekat
 Sistem login/register untuk para "Player" tentunya memiliki constraint, yaitu validasi email dan password. Email harus memiliki format yang benar dengan tanda @ dan titik, sementara password harus memiliki minimal 8 karakter, setidaknya satu huruf kecil, satu huruf besar, dan satu angka untuk menjaga keamanan data di dunia “Arcaea”.
 Ex (tidak harus sama, kebebasan artistik praktikan):
 
-    ![Image](https://github.com/user-attachments/assets/5011ea06-6db4-43c4-9a8f-e6083df10b46)
+    ![Image](https://github.com/user-attachments/assets/a3d986d1-c028-4e41-a485-d23961225e73)
 
    
 
