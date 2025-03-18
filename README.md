@@ -135,6 +135,7 @@ Sistem harus memiliki antarmuka utama yang menggabungkan semua komponen. Ini aka
 - Exit
 
 Struktur directory lengkap:
+
   ![Image](https://github.com/user-attachments/assets/c8a5b7b7-9775-4c65-ba57-0715b158ff23)
 
 
