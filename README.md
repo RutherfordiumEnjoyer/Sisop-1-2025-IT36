@@ -100,7 +100,7 @@ Selain CPU, “fragments” juga perlu dipantau untuk memastikan equilibrium dun
 Lokasi shell script: ./scripts/frag_monitor.sh
 Pastikan perhitungan kalian untuk CPU dan RAM memiliki output yang sama dengan suatu package resource checker, ex: top, htop, btop, bpytop. 
 
-   ![Image](https://github.com/user-attachments/assets/b1d51fea-c3ba-4d05-8477-5c7b09adbac9)
+   ![Image](https://github.com/user-attachments/assets/36e1f628-cc45-4b28-b408-28605ec891a1)
 
    g. “On Fate's Approach”
 Pemantauan yang teratur dan terjadwal sangat penting untuk mendeteksi anomali. Crontab manager (suatu menu) memungkinkan "Player" untuk mengatur jadwal pemantauan sistem. 
@@ -123,8 +123,8 @@ RAM
 
 Output Example:
 
-  ![Image](https://github.com/user-attachments/assets/516b5000-53f9-45af-bd7a-bf20fd8f9c8b)
-  ![Image](https://github.com/user-attachments/assets/07496a00-b123-4a77-a320-7aa3c757495e)
+  ![Image](https://github.com/user-attachments/assets/7b70cee8-66be-49bb-aa51-3fdd11f6b4ab)
+  ![Image](https://github.com/user-attachments/assets/98d64839-ad7c-4bd3-ac7d-4430b7101994)
 
    i. “Irruption of New Color”
 Sistem harus memiliki antarmuka utama yang menggabungkan semua komponen. Ini akan menjadi titik masuk bagi "Player" untuk mengakses seluruh sistem. Buatlah shell script terminal.sh, yang berisi user flow berikut:
