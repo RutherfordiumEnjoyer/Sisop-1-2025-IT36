@@ -123,8 +123,8 @@ RAM
 
 Output Example:
 
-  ![Image](https://github.com/user-attachments/assets/24696089-2a61-4566-822c-f5667a3c20ce)
-  ![Image](https://github.com/user-attachments/assets/74e1ee5e-3a8f-4382-99b0-2ba4a1269690)
+  ![Image](https://github.com/user-attachments/assets/516b5000-53f9-45af-bd7a-bf20fd8f9c8b)
+  ![Image](https://github.com/user-attachments/assets/07496a00-b123-4a77-a320-7aa3c757495e)
 
    i. “Irruption of New Color”
 Sistem harus memiliki antarmuka utama yang menggabungkan semua komponen. Ini akan menjadi titik masuk bagi "Player" untuk mengakses seluruh sistem. Buatlah shell script terminal.sh, yang berisi user flow berikut:
@@ -135,7 +135,7 @@ Sistem harus memiliki antarmuka utama yang menggabungkan semua komponen. Ini aka
 - Exit
 
 Struktur directory lengkap:
-  ![Image](https://github.com/user-attachments/assets/79aed9be-703d-47e1-b094-3ddad68bd615)
+  ![Image](https://github.com/user-attachments/assets/c8a5b7b7-9775-4c65-ba57-0715b158ff23)
 
 
 
