@@ -79,25 +79,31 @@ Contoh Output:
 2. Anda merupakan seorang “Observer”, dari banyak dunia yang dibuat dari ingatan yang berbentuk “fragments” - yang berisi kemungkinan yang dapat terjadi di dunia lain. Namun, akhir-akhir ini terdapat anomali-anomali yang seharusnya tidak terjadi, perpindahan “fragments” di berbagai dunia, yang kemungkinan terjadi dikarenakan seorang “Seeker” yang berubah menjadi “Ascendant”, atau dalam kata lain, “God”. Tidak semua “Observer” menjadi “Player”, tetapi disini anda ditugaskan untuk ikut serta dalam menjaga equilibrium dari dunia-dunia yang terbuat dari “Arcaea”. 
 
    a. “First Step in a New World”
+
 Tugas pertama, dikarenakan kejadian “Axiom of The End” yang semakin mendekat, diperlukan sistem untuk mencatat “Player” aktif agar terpisah dari “Observer”. Buatlah dua shell script, login.sh dan register.sh, yang dimana database “Player” disimpan di /data/player.csv. Untuk register, parameter yang dipakai yaitu email, username, dan password. Untuk login, parameter yang dipakai yaitu email dan password.
 
    b. “Radiant Genesis”
+
 Sistem login/register untuk para "Player" tentunya memiliki constraint, yaitu validasi email dan password. Email harus memiliki format yang benar dengan tanda @ dan titik, sementara password harus memiliki minimal 8 karakter, setidaknya satu huruf kecil, satu huruf besar, dan satu angka untuk menjaga keamanan data di dunia “Arcaea”.
 Ex (tidak harus sama, kebebasan artistik praktikan):
 
     ![Image](https://github.com/user-attachments/assets/a3d986d1-c028-4e41-a485-d23961225e73)
 
    c. “Unceasing Spirit”
+
 Karena diperlukan pengecekan keaslian “Player” yang aktif, maka diperlukan sistem untuk pencegahan duplikasi “Player”. Jadikan sistem login/register tidak bisa memakai email yang sama (email = unique), tetapi tidak ada pengecekan tambahan untuk username.
 
    d. “The Eternal Realm of Light”
+
 Password adalah kunci akses ke dunia Arcaea. Untuk menjaga keamanan "Player", password perlu disimpan dalam bentuk yang tidak mudah diakses. Gunakan algoritma hashing sha256sum yang memakai static salt (bebas).
 
    e. “The Brutality of Glass”
+
 Setelah sukses login, "Player" perlu memiliki akses ke sistem pemantauan sumber daya. Sistem harus dapat melacak penggunaan CPU (dalam persentase) yang menjadi representasi “Core” di dunia “Arcaea”. Pastikan kalian juga bisa melacak “terminal” yang digunakan oleh “Player”, yaitu CPU Model dari device mereka. 
 Lokasi shell script: ./scripts/core_monitor.sh
 
    f. “In Grief and Great Delight”
+
 Selain CPU, “fragments” juga perlu dipantau untuk memastikan equilibrium dunia “Arcaea”. RAM menjadi representasi dari “fragments” di dunia “Arcaea”, yang dimana dipantau dalam persentase usage, dan juga penggunaan RAM sekarang. 
 Lokasi shell script: ./scripts/frag_monitor.sh
 Pastikan perhitungan kalian untuk CPU dan RAM memiliki output yang sama dengan suatu package resource checker, ex: top, htop, btop, bpytop. 
@@ -105,6 +111,7 @@ Pastikan perhitungan kalian untuk CPU dan RAM memiliki output yang sama dengan s
    ![Image](https://github.com/user-attachments/assets/36e1f628-cc45-4b28-b408-28605ec891a1)
 
    g. “On Fate's Approach”
+
 Pemantauan yang teratur dan terjadwal sangat penting untuk mendeteksi anomali. Crontab manager (suatu menu) memungkinkan "Player" untuk mengatur jadwal pemantauan sistem. 
 Hal yang harus ada di fungsionalitas menu:
 • Add/Remove CPU [Core] Usage
@@ -116,6 +123,7 @@ Ex (tidak harus sama, kebebasan artistik praktikan):
    ![Image](https://github.com/user-attachments/assets/7d0996d7-986d-4cd5-963a-fb9ba8c75203)
 
    h. “The Disfigured Flow of Time”
+
 Karena tentunya script yang dimasukkan ke crontab tidak mengeluarkan output di terminal, buatlah 2 log file, core.log dan fragment.log di folder ./log/, yang dimana masing-masing terhubung ke program usage monitoring untuk usage tersebut. 
 Format log:
 
@@ -135,6 +143,7 @@ Output Example:
   ![Image](https://github.com/user-attachments/assets/98d64839-ad7c-4bd3-ac7d-4430b7101994)
 
    i. “Irruption of New Color”
+
 Sistem harus memiliki antarmuka utama yang menggabungkan semua komponen. Ini akan menjadi titik masuk bagi "Player" untuk mengakses seluruh sistem. Buatlah shell script terminal.sh, yang berisi user flow berikut:
 - Register
 -  Login
@@ -150,6 +159,7 @@ Struktur directory lengkap:
 3. Untuk merayakan ulang tahun ke 52 album The Dark Side of the Moon, tim PR Pink Floyd mengadakan sebuah lomba dimana peserta diminta untuk membuat sebuah script bertemakan setidaknya 5 dari 10 lagu dalam album tersebut. Sebagai salah satu peserta, kamu memutuskan untuk memilih Speak to Me, On the Run, Time, Money, dan Brain Damage. Saat program ini dijalankan, terminal harus dibersihkan terlebih dahulu agar tidak mengganggu tampilan dari fungsi fungsi yang kamu buat. Program ini dijalankan dengan cara ./dsotm.sh --play=”<Track>” dengan Track sebagai nama nama lagu yang kamu pilih.
 
    a. Speak to Me
+
 Untuk lagu ini, kamu memutuskan untuk membuat sebuah fitur yang memanggil API yang baru saja kamu temukan kemarin, https://github.com/annthurium/affirmations untuk menampilkan word of affirmation setiap detik.
 
    https://github.com/user-attachments/assets/fdfdbdee-acb2-441e-ab2f-c656260d2286
@@ -157,6 +167,7 @@ Untuk lagu ini, kamu memutuskan untuk membuat sebuah fitur yang memanggil API ya
 Diberikan kebebasan artistik, tidak harus sama persis dengan tampilan pada gif, tetapi untuk fungsionalitas, word of affirmation baru harus ditampilkan tiap detik.
 
    b. On the Run
+
 Selanjutnya, kamu memutuskan untuk membuat sebuah progress bar yang berjalan dengan interval random (setiap progress bertambah dalam interval waktu yang random dengan range 0.1 detik sampai 1 detik).
 
   https://github.com/user-attachments/assets/f87c67a2-0f6c-49bb-a3b3-f0937614736e
@@ -164,6 +175,7 @@ Selanjutnya, kamu memutuskan untuk membuat sebuah progress bar yang berjalan den
 Diberikan kebebasan artistik, tidak harus sama persis dengan tampilan pada gif, tetapi untuk fungsionalitas, progress bar harus memiliki perhitungan persentase, dan panjang dari progress bar tidak berubah ubah (selalu dari ujung kiri terminal ke ujung kanan terminal seperti pada gif)
 
    c. Time
+
 Singkat saja, untuk time, kamu memutuskan untuk membuat live clock yang menunjukkan tanggal, jam, menit dan detik.
 
   https://github.com/user-attachments/assets/59e51bdb-7af7-4f78-b9b4-475c6584da82
@@ -171,6 +183,7 @@ Singkat saja, untuk time, kamu memutuskan untuk membuat live clock yang menunjuk
 Diberikan kebebasan artistik, tidak harus sama persis dengan tampilan pada gif, tetapi untuk fungsionalitas, jam harus setidaknya menunjukkan tahun, bulan, tanggal, jam, menit, dan detik yang diperbaharui setiap detik.
 
   d. Money
+
 Kamu teringat dengan program yang sangat disukai oleh teman mu yang bernama cmatrix. Kamu pun memutuskan untuk membuat program yang mirip, tetapi mengganti isinya dengan simbol mata uang seperti $ € £ ¥ ¢ ₹ ₩ ₿ ₣ dan lain lainnya.
 
   https://github.com/user-attachments/assets/e84cc086-d34c-4783-984a-d52c33408c70
@@ -178,6 +191,7 @@ Kamu teringat dengan program yang sangat disukai oleh teman mu yang bernama cmat
 Diberikan kebebasan artistik, tidak harus sama persis dengan tampilan pada gif, tetapi untuk fungsionalitas, matrix tersusun oleh simbol mata uang minimal 5 simbol yang berbeda.
 
   e. Brain Damage
+
 Untuk lagu Brain Damage, kamu mendapatkan ide untuk menampilkan proses yang sedang berjalan, seperti task manager tetapi menampilkannya di dalam terminal dan membuat agar task manager tersebut menampilkan data baru setiap detiknya.
 
   https://github.com/user-attachments/assets/29456f18-bdc1-4e65-ad23-9745fd5ae618
@@ -197,12 +211,14 @@ Data tersebut memiliki banyak kolom:
 Untuk menganalisis data tersebut dengan baik, anda berpikiran untuk membuat script yang bernama pokemon_analysis.sh dengan fitur sebagai berikut:
 
   a. Melihat Summary Dari Data
+
 Untuk mengetahui Pokemon apa yang sedang membawa teror kepada lingkungan “Generation 9 OverUsed” anda berusaha untuk membuat sebuah fitur untuk menampilkan nama Pokemon dengan Usage% dan RawUsage paling tinggi.
 Contoh (atur pesan sesuai kreativitas):
 
   ![Image](https://github.com/user-attachments/assets/c2a8d6f0-341d-402f-a610-49a4f0c32c7a)
 
   b. Mengurutkan Pokemon Berdasarkan Data Kolom
+
 Untuk memastikan bahwa anda mengetahui kondisi lingkungan “Generation 9 OverUsed”, anda berusaha untuk membuat sebuah fitur untuk sort berdasarkan:
 - Usage%
 - RawUsage
@@ -221,6 +237,7 @@ Contoh:
   ![Image](https://github.com/user-attachments/assets/0b6390f7-28d2-4121-8fab-39d212691629)
 
   c. Mencari Nama Pokemon Tertentu
+
 Setelah mengetahui kondisi lingkungan “Generation 9 OverUsed”, anda ingin mencari tahu statistik penggunaan dari beberapa Pokemon yang mungkin dapat bertanding baik melawan sebagian besar Pokemon yang ada di Top 10 usage. Oleh karena itu, anda membuat fitur search berdasarkan nama Pokemon. Pastikan agar search yang dimasukkan tidak memunculkan hasil yang tidak diinginkan (seperti memunculkan semua Grass type ketika mengetik search “Grass”), dan output harus sesuai dengan format csv yang diberikan dengan sort Usage%.
 
 Contoh:
@@ -228,6 +245,7 @@ Contoh:
   ![Image](https://github.com/user-attachments/assets/babf5a3f-8ef3-470d-a740-9326454223d2)
 
   d. Mencari Pokemon Berdasarkan Filter Nama Type
+
 Agar dapat membuat tim yang baik, anda perlu memikirkan kombinasi yang baik dari beberapa Pokemon, hal ini disebut sebagai “core” oleh komunitas Pokemon! Oleh karena itu, anda berpikiran untuk membuat fitur filter berdasarkan Type sebuah Pokemon. Output harus sesuai dengan format csv yang diberikan dengan sort Usage%
 
 Contoh:
@@ -235,6 +253,7 @@ Contoh:
   ![Image](https://github.com/user-attachments/assets/83827cb9-ef56-4fea-b896-63c4ac87f8b3)
 
   e. Error Handling
+
 Pastikan program yang anda buat mengecek semua kesalahan pengguna agar dapat memberikan kejelasan kepada pengguna pada setiap kasus.
 
 Contoh:
@@ -242,6 +261,7 @@ Contoh:
   ![Image](https://github.com/user-attachments/assets/d64ade47-6198-4ab2-a1c4-3ac961a08be9)
 
   f. Help Screen Yang Menarik
+
 Untuk memberikan petunjuk yang baik pada pengguna program, anda berpikir untuk membuat sebuah help screen yang muncul ketika mengetik -h atau --help sebagai command yang dijalankan. Kriteria yang harus ada dalam help screen pada program ini adalah:
    - ASCII Art yang menarik! Gunakan kreativitas anda untuk mencari/membuat art yang cocok untuk program yang sudah anda buat!
    - Penjelasan setiap command dan sub-command
