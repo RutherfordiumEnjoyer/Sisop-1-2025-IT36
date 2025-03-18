@@ -62,6 +62,7 @@ Jika melanggar struktur repo akan dianggap sama dengan curang dan menerima konse
    
    d. Siroyo mengusap keningnya dan berkata, "Petualangan kita belum selesai! Aku harus bikin laporan untuk klub buku besok." Ia ingin membuat laporan yang istimewa dengan tablet ajaib itu, fokus pada teman-teman di Asia. "Aku penasaran genre apa yang paling populer di sana setelah tahun 2023," katanya, membuka reading_data.csv sekali lagi. Bantu Siroyo menganalisis data untuk menemukan genre yang paling sering dibaca di Asia setelah 31 Desember 2023, beserta jumlahnya, agar laporannya jadi yang terbaik di klub.
 Contoh Output:
+<img width="186" alt="Image" src="https://github.com/user-attachments/assets/d982bca3-3e17-46af-a7e3-1bd113b94061" />
 
 ## Detail Tambahan
 Informasi tambahan mengenai soal.
