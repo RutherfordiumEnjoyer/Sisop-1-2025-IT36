@@ -183,6 +183,18 @@ Untuk lagu Brain Damage, kamu mendapatkan ide untuk menampilkan proses yang seda
 Diberikan kebebasan artistik, tidak harus sama persis dengan tampilan pada gif, tetapi untuk fungsionalitas, data harus sesuai dengan ps/top dan sejenisnya.
 
 
+4. Pada suatu hari, anda diminta teman anda untuk membantunya mempersiapkan diri untuk turnamen Pokemon “Generation 9 OverUsed 6v6 Singles” dengan cara membuatkan tim yang cocok untuknya. Tetapi, anda tidak memahami meta yang dimainkan di turnamen tersebut. Untungnya, seorang informan memberikan anda data pokemon_usage.csv yang bisa anda download dan analisis.
+
+Data tersebut memiliki banyak kolom:
+- Nama Pokemon
+- Usage% yang merupakan persentase Pokemon yang disesuaikan dengan Rank pengguna dan Winrate
+- Raw Usage yang merupakan jumlah mentah Pokemon dalam semua tim yang tercatat
+- Type1 dan Type2 Pokemon
+- Statistic Pokemon: HP,Atk,Def,SpAtk,SpDef,Speed
+Untuk menganalisis data tersebut dengan baik, anda berpikiran untuk membuat script yang bernama pokemon_analysis.sh dengan fitur sebagai berikut:
+
+
+
 ## Detail Tambahan
 Informasi tambahan mengenai soal.
 
