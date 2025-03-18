@@ -85,7 +85,61 @@ Ex (tidak harus sama, kebebasan artistik praktikan):
 
     ![Image](https://github.com/user-attachments/assets/a3d986d1-c028-4e41-a485-d23961225e73)
 
-   
+   c. “Unceasing Spirit”
+Karena diperlukan pengecekan keaslian “Player” yang aktif, maka diperlukan sistem untuk pencegahan duplikasi “Player”. Jadikan sistem login/register tidak bisa memakai email yang sama (email = unique), tetapi tidak ada pengecekan tambahan untuk username.
+
+   d. “The Eternal Realm of Light”
+Password adalah kunci akses ke dunia Arcaea. Untuk menjaga keamanan "Player", password perlu disimpan dalam bentuk yang tidak mudah diakses. Gunakan algoritma hashing sha256sum yang memakai static salt (bebas).
+
+   e. “The Brutality of Glass”
+Setelah sukses login, "Player" perlu memiliki akses ke sistem pemantauan sumber daya. Sistem harus dapat melacak penggunaan CPU (dalam persentase) yang menjadi representasi “Core” di dunia “Arcaea”. Pastikan kalian juga bisa melacak “terminal” yang digunakan oleh “Player”, yaitu CPU Model dari device mereka. 
+Lokasi shell script: ./scripts/core_monitor.sh
+
+   f. “In Grief and Great Delight”
+Selain CPU, “fragments” juga perlu dipantau untuk memastikan equilibrium dunia “Arcaea”. RAM menjadi representasi dari “fragments” di dunia “Arcaea”, yang dimana dipantau dalam persentase usage, dan juga penggunaan RAM sekarang. 
+Lokasi shell script: ./scripts/frag_monitor.sh
+Pastikan perhitungan kalian untuk CPU dan RAM memiliki output yang sama dengan suatu package resource checker, ex: top, htop, btop, bpytop. 
+
+   ![Image](https://github.com/user-attachments/assets/b1d51fea-c3ba-4d05-8477-5c7b09adbac9)
+
+   g. “On Fate's Approach”
+Pemantauan yang teratur dan terjadwal sangat penting untuk mendeteksi anomali. Crontab manager (suatu menu) memungkinkan "Player" untuk mengatur jadwal pemantauan sistem. 
+Hal yang harus ada di fungsionalitas menu:
+• Add/Remove CPU [Core] Usage
+• Add/Remove RAM [Fragment] Usage
+• View Active Jobs
+Lokasi shell script: ./scripts/manager.sh
+Ex (tidak harus sama, kebebasan artistik praktikan):
+
+   ![Image](https://github.com/user-attachments/assets/7d0996d7-986d-4cd5-963a-fb9ba8c75203)
+
+   h. “The Disfigured Flow of Time”
+Karena tentunya script yang dimasukkan ke crontab tidak mengeluarkan output di terminal, buatlah 2 log file, core.log dan fragment.log di folder ./log/, yang dimana masing-masing terhubung ke program usage monitoring untuk usage tersebut. 
+Format log:
+CPU
+[YYYY-MM-DD HH:MM:SS] - Core Usage [$CPU%] - Terminal Model [$CPU_Model]
+RAM
+[YYYY-MM-DD HH:MM:SS] - Fragment Usage [$RAM%] - Fragment Count [$RAM MB] - Details [Total: $TOTAL MB, Available: $AVAILABLE MB]
+
+Output Example:
+
+  ![Image](https://github.com/user-attachments/assets/24696089-2a61-4566-822c-f5667a3c20ce)
+  ![Image](https://github.com/user-attachments/assets/74e1ee5e-3a8f-4382-99b0-2ba4a1269690)
+
+   i. “Irruption of New Color”
+Sistem harus memiliki antarmuka utama yang menggabungkan semua komponen. Ini akan menjadi titik masuk bagi "Player" untuk mengakses seluruh sistem. Buatlah shell script terminal.sh, yang berisi user flow berikut:
+- Register
+-  Login
+    - Crontab manager (add/rem core & fragment usage)
+    - Exit
+- Exit
+
+Struktur directory lengkap:
+  ![Image](https://github.com/user-attachments/assets/79aed9be-703d-47e1-b094-3ddad68bd615)
+
+
+
+
 
 
 ## Detail Tambahan
