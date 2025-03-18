@@ -191,7 +191,58 @@ Data tersebut memiliki banyak kolom:
 - Raw Usage yang merupakan jumlah mentah Pokemon dalam semua tim yang tercatat
 - Type1 dan Type2 Pokemon
 - Statistic Pokemon: HP,Atk,Def,SpAtk,SpDef,Speed
+
 Untuk menganalisis data tersebut dengan baik, anda berpikiran untuk membuat script yang bernama pokemon_analysis.sh dengan fitur sebagai berikut:
+
+  a. Melihat Summary Dari Data
+Untuk mengetahui Pokemon apa yang sedang membawa teror kepada lingkungan “Generation 9 OverUsed” anda berusaha untuk membuat sebuah fitur untuk menampilkan nama Pokemon dengan Usage% dan RawUsage paling tinggi.
+Contoh (atur pesan sesuai kreativitas):
+
+  ![Image](https://github.com/user-attachments/assets/c2a8d6f0-341d-402f-a610-49a4f0c32c7a)
+
+  b. Mengurutkan Pokemon Berdasarkan Data Kolom
+Untuk memastikan bahwa anda mengetahui kondisi lingkungan “Generation 9 OverUsed”, anda berusaha untuk membuat sebuah fitur untuk sort berdasarkan:
+- Usage%
+- RawUsage
+- Nama
+- HP
+- Atk
+- Def
+- Sp.Atk
+- Sp.Def
+- Speed
+
+Sort dilakukan dengan urutan descending untuk semua angka selain nama, yang diurutkan secara alphabetical. Output harus sesuai dengan format csv yang diberikan.
+Contoh:
+
+  ![Image](https://github.com/user-attachments/assets/0b6390f7-28d2-4121-8fab-39d212691629)
+
+  c. Mencari Nama Pokemon Tertentu
+Setelah mengetahui kondisi lingkungan “Generation 9 OverUsed”, anda ingin mencari tahu statistik penggunaan dari beberapa Pokemon yang mungkin dapat bertanding baik melawan sebagian besar Pokemon yang ada di Top 10 usage. Oleh karena itu, anda membuat fitur search berdasarkan nama Pokemon. Pastikan agar search yang dimasukkan tidak memunculkan hasil yang tidak diinginkan (seperti memunculkan semua Grass type ketika mengetik search “Grass”), dan output harus sesuai dengan format csv yang diberikan dengan sort Usage%.
+Contoh:
+
+  ![Image](https://github.com/user-attachments/assets/babf5a3f-8ef3-470d-a740-9326454223d2)
+
+  d. Mencari Pokemon Berdasarkan Filter Nama Type
+Agar dapat membuat tim yang baik, anda perlu memikirkan kombinasi yang baik dari beberapa Pokemon, hal ini disebut sebagai “core” oleh komunitas Pokemon! Oleh karena itu, anda berpikiran untuk membuat fitur filter berdasarkan Type sebuah Pokemon. Output harus sesuai dengan format csv yang diberikan dengan sort Usage%
+Contoh:
+
+  ![Image](https://github.com/user-attachments/assets/83827cb9-ef56-4fea-b896-63c4ac87f8b3)
+
+  e. Error Handling
+Pastikan program yang anda buat mengecek semua kesalahan pengguna agar dapat memberikan kejelasan kepada pengguna pada setiap kasus.
+Contoh:
+
+  ![Image](https://github.com/user-attachments/assets/d64ade47-6198-4ab2-a1c4-3ac961a08be9)
+
+  f. Help Screen Yang Menarik
+Untuk memberikan petunjuk yang baik pada pengguna program, anda berpikir untuk membuat sebuah help screen yang muncul ketika mengetik -h atau --help sebagai command yang dijalankan. Kriteria yang harus ada dalam help screen pada program ini adalah:
+   - ASCII Art yang menarik! Gunakan kreativitas anda untuk mencari/membuat art yang cocok untuk program yang sudah anda buat!
+   - Penjelasan setiap command dan sub-command
+Contoh:
+
+  ![Image](https://github.com/user-attachments/assets/db9ace5b-029f-44ec-8068-aeec93057857)
+
 
 
 
