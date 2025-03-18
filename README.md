@@ -70,6 +70,18 @@ Contoh Output:
 Contoh Output:
    <img width="500" alt="Image" src="https://github.com/user-attachments/assets/b7fd5122-3b18-4270-9b97-416f100ffe46" />
 
+2. Anda merupakan seorang “Observer”, dari banyak dunia yang dibuat dari ingatan yang berbentuk “fragments” - yang berisi kemungkinan yang dapat terjadi di dunia lain. Namun, akhir-akhir ini terdapat anomali-anomali yang seharusnya tidak terjadi, perpindahan “fragments” di berbagai dunia, yang kemungkinan terjadi dikarenakan seorang “Seeker” yang berubah menjadi “Ascendant”, atau dalam kata lain, “God”. Tidak semua “Observer” menjadi “Player”, tetapi disini anda ditugaskan untuk ikut serta dalam menjaga equilibrium dari dunia-dunia yang terbuat dari “Arcaea”. 
+
+   a. “First Step in a New World”
+Tugas pertama, dikarenakan kejadian “Axiom of The End” yang semakin mendekat, diperlukan sistem untuk mencatat “Player” aktif agar terpisah dari “Observer”. Buatlah dua shell script, login.sh dan register.sh, yang dimana database “Player” disimpan di /data/player.csv. Untuk register, parameter yang dipakai yaitu email, username, dan password. Untuk login, parameter yang dipakai yaitu email dan password.
+
+   b. “Radiant Genesis”
+Sistem login/register untuk para "Player" tentunya memiliki constraint, yaitu validasi email dan password. Email harus memiliki format yang benar dengan tanda @ dan titik, sementara password harus memiliki minimal 8 karakter, setidaknya satu huruf kecil, satu huruf besar, dan satu angka untuk menjaga keamanan data di dunia “Arcaea”.
+Ex (tidak harus sama, kebebasan artistik praktikan):
+![Image](https://github.com/user-attachments/assets/5011ea06-6db4-43c4-9a8f-e6083df10b46)
+
+   
+
 
 ## Detail Tambahan
 Informasi tambahan mengenai soal.
