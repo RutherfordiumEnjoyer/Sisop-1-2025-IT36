@@ -314,4 +314,66 @@ Penjelasan mengenai soal 2.
 - Membuat file 
 
 ### Soal 4
-Penjelasan mengenai soal 4.
+
+a.) Mengecek Argumen Input
+```
+if [ $# -lt 2 ]; then
+    echo "Error: Missing arguments."
+    echo "Use -h or --help for more information."
+    exit 1
+fi
+```
+   - "$#" → Menunjukkan jumlah argumen yang diberikan saat menjalankan script.
+   - [ $# -lt 2 ] → Mengecek apakah jumlah argumen kurang dari 2 (minimal file dan opsi).
+   - Jika kurang, akan menampilkan pesan error dan keluar (exit 1).
+
+b.) Mengecek Keberadaan File
+```
+file="$1"
+opsi="$2"
+
+if [ ! -f "$file" ]; then
+    echo "Error: file $file not found!"
+    exit 1
+fi
+```
+  - $1 → Argumen pertama sebagai nama file CSV.
+  - $2 → Argumen kedua sebagai opsi.
+  - [ ! -f "$file" ] → Mengecek apakah file tidak ditemukan, jika iya maka script berhenti.
+
+c.) Menampilkan Bantuan (-h atau --help)
+```
+if [ "$opsi" = "-h" ] || [ "$opsi" = "--help" ]; then
+```
+  - Jika opsi -h atau --help digunakan, maka akan menampilkan cara penggunaan script.
+
+d.) Mencari Pokémon dengan Usage% dan RawUsage Tertinggi (-i atau --info)
+```
+awk -F',' 'NR > 1 { if ($2+0 > max1) { max1=$2+0; name1=$1 } if ($3+0 > max2) { max2=$3+0; name2=$1 } } \
+END { print "🔥 Pokemon dengan Usage% tertinggi: "; print "Highest Adjusted Usage: " name1, max1 "%"; \
+print "⚡ Pokemon dengan RawUsage tertinggi: "; print "Highest Raw Usage: " name2, max2 " uses" }' "$file"
+```
+  - awk -F',' → Memisahkan file CSV berdasarkan koma.
+  - NR > 1 → Memproses mulai dari baris kedua (menghindari header).
+  - $2+0 dan $3+0 → Menjadikan kolom ke-2 dan ke-3 sebagai angka.
+  - if ($2+0 > max1) { max1=$2+0; name1=$1 } → Mencari Pokémon dengan Usage% tertinggi.
+  - if ($3+0 > max2) { max2=$3+0; name2=$1 } → Mencari Pokémon dengan RawUsage tertinggi.
+
+e.) Menyortir Data (-s atau --sort <metode>)
+```
+if [ "$opsi" = "-s" ] || [ "$opsi" = "--sort" ]; then
+```
+  - declare -A pilihan → Array asosiatif untuk menentukan kolom berdasarkan metode sorting.
+  - sort -t, -k${col},${col} -n "$file" → Sorting berdasarkan kolom tertentu (asc/desc).
+
+f.) Mencari Pokémon Berdasarkan Nama (-g atau --grep <nama>)
+```
+awk -F',' -v name="$3" 'NR==1 || tolower($1) ~ tolower(name)' "$file"
+```
+  - tolower($1) ~ tolower(name) → Mencari nama Pokémon tanpa memperdulikan huruf besar/kecil.
+
+g.) Menyaring Pokémon Berdasarkan Tipe (-f atau --filter <tipe>)
+```
+awk -F',' -v type="$3" 'NR > 1 && (tolower($4) == tolower(type) || tolower($5) == tolower(type))' "$file"
+```
+  - Menampilkan Pokémon yang memiliki tipe tertentu di kolom 4 atau 5.
