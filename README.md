@@ -1,4 +1,4 @@
-ls# SISOP-1-2024-IT36
+# SISOP-1-2024-IT36
 
 Anggota Kelompok
 |     Nrp    |                Nama              |
@@ -271,22 +271,47 @@ Contoh:
   ![Image](https://github.com/user-attachments/assets/db9ace5b-029f-44ec-8068-aeec93057857)
 
 
+### Soal 1**
 
+- Membuat file poposiroyo
+  ```
+  nano poposiroyo.sh
+  ```
+- mendowload reading_data.csv
+  ```
+  !/bin/bash
+  wget "https://drive.usercontent.google.com/u/0/uc? id=1l8fsj5LZLwXBlHa>name_file='reading_data.csv'
+  ```
+a. Menghitung banyak baris yang mengandung di colom pembaca
+  
+  ```
+  echo 'abcd'
+  read -p 'masukan huruf : ' pilihan
+  if [[ "$pilihan" == "a" ]]; then
+  awk -F, '$2 == "Chris Hemsworth" { count++ } END { print "Chris Hemsworth membaca " count " buku." }' "$name_file"
+  ```
+ b.Menghitung rata rata dari pengguna yang menggunakan tablet
+  ```
+  elif [[ "$pilihan" == "b" ]]; then
+  awk -F, '$8 == "Tablet" { jumlah+=$6 ;count++} END { print "Rata-rata durasi membaca dengan Tablet adalah " jumlah / count " menit."}' "$name_file"
+  ```
+ c.Mencari reting tertinggi
+  ```
+  elif [[ "$pilihan" == "c" ]]; then
+  awk -F, 'NR>1 && $7 > max { max=$7; nama=$2; judul=$3 } END { print "Pembaca dengan rating tertinggi:", nama, "-", judul, "-", max }' "$name_file"
+  ```
+ d. menganalisis genre populer 
+  ```
+  elif [[ "$pilihan" == "d" ]]; then
+  awk -F, 'NR>1 && $9=="Asia" && $5 >= "2023-12-31" { genre[$4]++ } END { for (x in genre) if (genre[x] > max) { max=genre[x]; populer=x } print "Gen>else echo 'x'
 
-## Detail Tambahan
-Informasi tambahan mengenai soal.
-
----
-
-## Penjelasan
-### Soal 1
-Penjelasan mengenai soal 1.
-
-### Soal 2
+   fi
+  ```
+### Soal 2**
 Penjelasan mengenai soal 2.
 
 ### Soal 3
-Penjelasan mengenai soal 3.
+- Membuat file 
 
 ### Soal 4
 Penjelasan mengenai soal 4.
