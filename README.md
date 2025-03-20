@@ -309,7 +309,7 @@ a. Menghitung banyak baris yang mengandung di colom pembaca
   ```
 ### Soal 2
 
-  ##1. Script register.sh
+  ## 1. Script register.sh
 
 a.) Header dan Variabel Awal
 ```
@@ -409,7 +409,7 @@ echo "Registration successful."
   - Menampilkan pesan "Registration successful." jika berhasil.
 
 
-  ##2. Script login.sh
+  ## 2. Script login.sh
   
 a.) Header dan Variabel Awal
 ```
@@ -455,6 +455,86 @@ fi
     - ,$HASHED_PASSWORD$ → Memeriksa apakah hash password sesuai dengan yang tersimpan.
   - Jika kredensial cocok, menampilkan "Login successful.", jika tidak, menampilkan "Invalid email or password.".
 
+  ## 3. Script core_monitor.sh
+
+a.) Menentukan Path File Log
+```
+LOG_FILE="/home/remmyg0d/arcaea/log/core.log"
+```
+  - File log yang digunakan untuk menyimpan data pemantauan CPU.
+
+b.) Mendapatkan Waktu Sekarang
+```
+TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
+```
+  - date digunakan untuk mendapatkan waktu sekarang dalam format YYYY-MM-DD HH:MM:SS.
+
+c.) Mengambil Penggunaan CPU (dalam persen)
+```
+CPU_USAGE=$(top -bn2 | grep "Cpu(s)" | tail -n 1 | awk '{print $2 + $4}')
+```
+  - top -bn2 menjalankan perintah top dalam mode batch 2 kali.
+  - grep "Cpu(s)" mengambil baris yang berisi informasi CPU.
+  - tail -n 1 mengambil hasil terbaru.
+  - awk '{print $2 + $4}' menjumlahkan CPU user usage ($2) dan CPU system usage ($4) untuk mendapatkan total penggunaan CPU.
+
+d.) Mengambil Model CPU
+```
+CPU_MODEL=$(grep "model name" /proc/cpuinfo | head -n 1 | awk -F ': ' '{print $2}')
+```
+  - grep "model name" /proc/cpuinfo mencari baris yang mengandung nama CPU.
+  - head -n 1 mengambil hasil pertama.
+  - awk -F ': ' '{print $2}' mengambil teks setelah model name :.
+
+e.) Membentuk Format Output
+```
+LOG_ENTRY="[${TIMESTAMP}] – Core Usage [${CPU_USAGE}%] – Terminal Model [${CPU_MODEL}]"
+```
+  - Menyusun string log dengan format timestamp, penggunaan CPU, dan model CPU.
+
+f.) Menyimpan Data ke Log File
+```
+echo "$LOG_ENTRY" >> "$LOG_FILE"
+```
+  - Menyimpan log ke dalam file core.log.
+
+  ## 4. Script frag_monitor.sh
+
+a.) Mengambil Informasi RAM (dalam KB)
+```
+RAM_TOTAL_KB=$(awk '/MemTotal/ {print $2}' /proc/meminfo)
+RAM_AVAILABLE_KB=$(awk '/MemAvailable/ {print $2}' /proc/meminfo)
+RAM_USED_KB=$((RAM_TOTAL_KB - RAM_AVAILABLE_KB))
+```
+  - MemTotal menunjukkan total RAM.
+  - MemAvailable menunjukkan RAM yang tersedia.
+  - RAM_USED_KB dihitung sebagai Total RAM - RAM Available.
+
+b.) Konversi ke MB
+```
+RAM_TOTAL=$((RAM_TOTAL_KB / 1024))
+RAM_AVAILABLE=$((RAM_AVAILABLE_KB / 1024))
+RAM_USED=$((RAM_USED_KB / 1024))
+```
+  - Mengonversi KB ke MB dengan membagi 1024.
+
+c.) Menghitung Persentase Penggunaan RAM
+```
+RAM_PERCENT=$(awk "BEGIN {printf \"%.2f\", (${RAM_USED}/${RAM_TOTAL}) * 100}")
+```
+  - Menghitung persentase penggunaan RAM dengan format desimal 2 angka.
+
+d.) Membentuk Format Output
+```
+LOG_ENTRY="[${TIMESTAMP}] – Fragment Usage [${RAM_PERCENT}%] – Fragment Count [${RAM_USED} MB] – Details [Total: ${RAM_TOTAL} MB, Available: ${RAM_AVAILABLE} MB]"
+```
+  - Menyusun log dengan informasi fragmentasi RAM.
+
+e.) Menyimpan Data ke Log File
+```
+echo "$LOG_ENTRY" >> "$LOG_FILE"
+```
+  - Menyimpan log ke dalam file fragment.log
 
 ### Soal 3
 - Membuat file 
