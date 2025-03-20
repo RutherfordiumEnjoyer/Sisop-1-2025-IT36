@@ -603,3 +603,40 @@ g.) Menyaring Pokémon Berdasarkan Tipe (-f atau --filter <tipe>)
 awk -F',' -v type="$3" 'NR > 1 && (tolower($4) == tolower(type) || tolower($5) == tolower(type))' "$file"
 ```
   - Menampilkan Pokémon yang memiliki tipe tertentu di kolom 4 atau 5.
+
+
+### REVISI
+
+  ## Soal Nomor 4
+
+Pada fitur "--filter" seharusnya memiliki output error jika tidak ditemukannya tipe pokemon yang difilter.
+Saat command "--filter Weavile" di run, output yang ditampilkan tidak ada atau kosong sehingga bagian filter perlu diperbaiki.
+
+Output sebelum revisi:
+
+  ![Image](https://github.com/user-attachments/assets/fc8e0a97-c95f-47b0-a19f-b1455e16fd66)
+
+Output setelah revisi:
+
+  ![Image](https://github.com/user-attachments/assets/9cbd3a95-1ac5-42e0-b334-f4c23d2bf25c)
+
+Bagian kode yang belum diperbaiki:
+
+```
+awk -F',' -v type="$3" 'NR > 1 && (tolower($4) == tolower(type) || tolower($5) == tolower(type))' "$file"
+```
+
+Kode setelah diperbaiki:
+
+```
+  awk -F',' -v type="$3" '
+    BEGIN { count = 0 }
+    NR > 1 && (tolower($4) == tolower(type) || tolower($5) == tolower(type)) { print; count++ }
+    END { if (count == 0) print "Warning: No Pokémon found with type " type "." }
+' "$file"
+```
+
+  - count = 0 → Variabel untuk menghitung jumlah Pokémon yang cocok.
+  - Jika ada Pokémon yang sesuai, akan dicetak dan count bertambah.
+  
+
