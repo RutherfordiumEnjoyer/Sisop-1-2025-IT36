@@ -1,4 +1,4 @@
-# SISOP-1-2024-IT36
+ls# SISOP-1-2024-IT36
 
 Anggota Kelompok
 |     Nrp    |                Nama              |
