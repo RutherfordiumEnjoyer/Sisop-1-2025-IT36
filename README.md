@@ -307,8 +307,154 @@ a. Menghitung banyak baris yang mengandung di colom pembaca
 
    fi
   ```
-### Soal 2**
-Penjelasan mengenai soal 2.
+### Soal 2
+
+  ##1. Script register.sh
+
+a.) Header dan Variabel Awal
+```
+#!/bin/bash
+
+DATA_FILE=~/arcaea/data/player.csv
+SALT="arcaea_salt"
+```
+  - #!/bin/bash → Menandakan bahwa script ini akan dijalankan dengan Bash shell.
+  - DATA_FILE → Menyimpan lokasi file database pengguna.
+  - SALT → Digunakan sebagai tambahan (salt) dalam hashing password agar lebih aman.
+
+b.) Fungsi Validasi Email
+```
+validate_email() {
+  [[ "$1" =~ [a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$ ]]
+}
+```
+  - Fungsi ini menerima satu parameter ($1).
+  - Menggunakan regex (=~) untuk mengecek apakah email yang diberikan valid.
+  - Struktur regex:
+    - [a-zA-Z0-9._%+-]+ → Bagian awal email (username).
+    - @ → Harus ada simbol @.
+    - [a-zA-Z0-9.-]+ → Domain email.
+    - \. → Harus ada titik (.) sebelum ekstensi domain.
+    - [a-zA-Z]{2,}$ → Ekstensi domain (misalnya .com, .id, .org).
+      
+c.) Fungsi Validasi Password
+```
+validate_password() {
+  [[ "$1" =~ [A-Z] ]] && [[ "$1" =~ [a-z] ]] && [[ "$1" =~ [0-9] ]] && [[ ${#1} -ge 8 ]]
+}
+```
+  - Fungsi ini mengecek apakah password memenuhi aturan berikut:
+    - Minimal 8 karakter (${#1} -ge 8).
+    - Mengandung setidaknya 1 huruf besar ([A-Z]).
+    - Mengandung setidaknya 1 huruf kecil ([a-z]).
+    - Mengandung setidaknya 1 angka ([0-9]).
+
+d.) Pengambilan dan Validasi Input
+```
+EMAIL="$1"
+USERNAME="$2"
+PASSWORD="$3"
+
+if [[ -z "$EMAIL" || -z "$USERNAME" || -z "$PASSWORD" ]]; then
+  echo "Usage: $0 <email> <username> <password>"
+  exit 1
+fi
+```
+  - $1, $2, $3 → Parameter input dari command line (email, username, password).
+  - [[ -z "$EMAIL" || -z "$USERNAME" || -z "$PASSWORD" ]] → Mengecek apakah ada input yang kosong.
+  - Jika ada yang kosong, program akan menampilkan pesan dan keluar (exit 1).
+
+e.) Validasi Email dan Password
+```
+if ! validate_email "$EMAIL"; then
+  echo "Invalid email format."
+  exit 1
+fi
+
+if ! validate_password "$PASSWORD"; then
+  echo "Password must be at least 8 characters long, contain one uppercase letter, one lowercase letter, and one number."
+  exit 1
+fi
+```
+  - Memanggil fungsi validate_email dan validate_password.
+  - Jika email atau password tidak valid, script akan menampilkan pesan kesalahan dan keluar.
+
+f.) Cek Apakah Email Sudah Terdaftar
+```
+if grep -q "^$EMAIL," "$DATA_FILE"; then
+  echo "Email already registered."
+  exit 1
+fi
+```
+  - grep -q "^$EMAIL," "$DATA_FILE" → Mengecek apakah email sudah ada di dalam database (player.csv).
+  - ^$EMAIL, → Memastikan bahwa email ada di awal baris (menggunakan ^).
+  - Jika email sudah ada, program menampilkan pesan dan keluar.
+
+g.) Hash Password dengan SHA-256
+```
+HASHED_PASSWORD=$(echo -n "$PASSWORD$SALT" | sha256sum | awk '{print $1}')
+```
+  - Menggunakan sha256sum untuk membuat hash dari password + salt.
+  - echo -n "$PASSWORD$SALT" → Menggabungkan password dengan salt, lalu menghilangkan newline dengan -n.
+  - sha256sum → Menghasilkan hash SHA-256.
+  - awk '{print $1}' → Mengambil hanya hash-nya tanpa tambahan teks.
+
+h.) Simpan Data ke File
+```
+echo "$EMAIL,$USERNAME,$HASHED_PASSWORD" >> "$DATA_FILE"
+echo "Registration successful."
+```
+  - Format penyimpanan: email,username,hashed_password.
+  - >> "$DATA_FILE" → Menambahkan data ke file tanpa menghapus yang lama.
+  - Menampilkan pesan "Registration successful." jika berhasil.
+
+
+  ##2. Script login.sh
+  
+a.) Header dan Variabel Awal
+```
+#!/bin/bash
+
+DATA_FILE=~/arcaea/data/player.csv
+SALT="arcaea_salt"
+```
+  - Sama seperti register.sh, ini menentukan lokasi file data dan salt.
+
+b.) Pengambilan dan Validasi Input
+```
+EMAIL="$1"
+PASSWORD="$2"
+
+if [[ -z "$EMAIL" || -z "$PASSWORD" ]]; then
+  echo "Usage: $0 <email> <password>"
+  exit 1
+fi
+```
+  - $1 → Email yang dimasukkan pengguna.
+  - $2 → Password yang dimasukkan pengguna.
+  - Mengecek apakah input kosong (-z).
+
+c.) Hash Password untuk Verifikasi
+```
+HASHED_PASSWORD=$(echo -n "$PASSWORD$SALT" | sha256sum | awk '{print $1}')
+```
+  - Hashing dilakukan dengan cara yang sama seperti saat registrasi.
+
+d.) Cek Kredensial di Database
+```
+if grep -q "^$EMAIL,.*,$HASHED_PASSWORD$" "$DATA_FILE"; then
+  echo "Login successful."
+else
+  echo "Invalid email or password."
+  exit 1
+fi
+```
+  - grep -q "^$EMAIL,.*,$HASHED_PASSWORD$" "$DATA_FILE":
+    - ^$EMAIL, → Memastikan email ada di awal baris.
+    - .* → Mengabaikan username (karena tidak digunakan dalam login).
+    - ,$HASHED_PASSWORD$ → Memeriksa apakah hash password sesuai dengan yang tersimpan.
+  - Jika kredensial cocok, menampilkan "Login successful.", jika tidak, menampilkan "Invalid email or password.".
+
 
 ### Soal 3
 - Membuat file 
